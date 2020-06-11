@@ -1,0 +1,12 @@
+.header-box {
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+}
+
+.title {
+    font-size: 8vh;
+    font-weight: 400;
+}

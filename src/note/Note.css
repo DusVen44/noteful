@@ -1,0 +1,23 @@
+.note-box {
+    display: flex;
+    padding: 15px;
+    border: 2px solid black;
+    width: 500px;
+    height: 200px;
+    position: relative;
+}
+
+.delete-button {
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background-color: rgb(255, 0, 0);
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.note-content {
+    width: 80%;
+}
