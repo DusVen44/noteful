@@ -1,13 +1,21 @@
 import React from 'react'
 import './NoteList.css'
+import AppContext from '../AppContext'
 
-export default function NoteList(props) {
+export default function NoteList() {
+    
     return (
-        <div className="note-list-box">
-            <ul>
-                {props.renderMainContent}
-                {props.renderNote}
-            </ul>
-        </div>
+        <AppContext.Consumer>
+            {(value) => (
+                <div className="note-list-box">
+                    <ul>
+                        {value.renderNoteList}
+                    </ul>
+                    <div className="note">
+                        {value.renderNote}
+                    </div>
+                </div>
+        )}
+        </AppContext.Consumer>
     )
 }
