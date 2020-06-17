@@ -1,0 +1,20 @@
+.note-link-box {
+    list-style-type: none;
+    border: 1px solid black;
+    width: 400px;
+    height: 75px;
+    background-color: rgb(200, 200, 200);
+    margin-bottom: 15px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.button-delete {
+    width: 100px;
+    height: 40px;
+    background-color: rgb(255, 0, 0);
+    font-size: 15px;
+    font-weight: 600;
+}

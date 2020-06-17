@@ -3,10 +3,7 @@ import "./Note.css"
 import AppContext from '../AppContext'
 
 export default class Note extends Component {
-    static defaultProps = {
-        onDeleteNote: () => {},
-    }
-    static contextType=AppContext;
+    static contextType = AppContext;
 
     handleDelete = e => {
         const id = this.props.id;
@@ -24,9 +21,9 @@ export default class Note extends Component {
             return res.json()
         })
         .then(() => {
-            this.props.onDeleteNote(id)
+            this.context.handleNoteDeleteUpdate(id)
+            this.props.history.push('/')
         })
-        .then(this.props.history.push('/'))
         .catch(error => {
             console.log(error)
         })
@@ -34,19 +31,25 @@ export default class Note extends Component {
 
     render() {
         return (
-            <div>
-                <div className="note-box">
+            <div className="single-note">
+                <button onClick={() => {this.props.history.goBack()}}>
+                    Go Back
+                </button>
+                <br></br>
+
+                <div className="note-link-box">
                     <h1>{this.props.name}</h1>
                     <button 
-                        className="delete-button"
-                        onClick={this.handleDelete}>Delete Note</button>
+                        className="button-delete"
+                        onClick={this.handleDelete}
+                    >
+                        Delete
+                    </button>
                 </div>
-                <div className="note-content">
+
+                <div className="content">
                     <p>{this.props.content}</p>
                 </div>
-                <button 
-                    className="go-back-button"
-                    onClick={this.props.onClickGoBack}>Go Back to Notes</button>
             </div>
         )}
     }

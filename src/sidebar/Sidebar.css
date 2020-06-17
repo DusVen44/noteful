@@ -28,3 +28,9 @@
     width: 100px;
     height: 20px;
 }
+
+.add-folder-form-container {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}

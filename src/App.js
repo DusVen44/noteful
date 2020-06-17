@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Route, NavLink, Link } from 'react-router-dom';
 import './App.css';
 import Header from './header/Header';
-import Note from './note/Note';
 import Sidebar from './sidebar/Sidebar';
 import ContentContainer from './contentContainer/ContentContainer';
 import AppContext from './AppContext';
@@ -12,7 +10,7 @@ export default class App extends Component {
     super(props)
     this.state = {
       folders: [],
-      notes: []
+      notes: [],
     };
   }
 
@@ -40,79 +38,31 @@ export default class App extends Component {
       });
   }
 
-  renderNavLinks() {
-    const { folders } = this.state;
-    const folderList = folders.map(folder => {
-      return (
-        <Route
-          key={folder.id}
-          render={ () => {
-            return  <NavLink 
-                      to={`/${folder.id}`}
-                      className="nav-link"
-                      activeClassName="active"> 
-                        <li className="nav-link-box">
-                          {folder.name}
-                        </li>
-                    </NavLink>
-          }}
-        />
-      )
-      })
-    return folderList
+  handleNoteDeleteUpdate = id => {
+    this.setState({
+      notes: this.state.notes.filter(note => note.id !== id)
+    })
   }
 
-  renderNoteList() {
-    const { notes } = this.state;
-    const noteList = notes.map(note => {
-      return (
-        <Route 
-          key={note.id}
-          path={`/${note.folderId}`}
-          render={ () => {
-            return  <Link to={`/${note.id}`}>
-                      <li className="note-link-box">
-                        {note.name}
-                      </li>
-                    </Link>
-          }}
-        />
-      )
+  handleNewFolder = newFolder => {
+    this.setState({
+      folders: [...this.state.folders, newFolder]
     })
-    return noteList
   }
 
-  renderNote() {
-    const { notes } = this.state;
-    const note = notes.map(note => {
-      return (
-        <Route
-          key={note.id}
-          path={`/${note.id}`}
-          render={ () => {
-            return <Route 
-                    path={`/${note.id}`} 
-                    render={ routeProps => {
-                      return <Note 
-                              {...routeProps} 
-                              {...note}
-                              id={note.id}
-                              onClickGoBack={() => routeProps.history.goBack()}/>
-                    }} />
-          }}
-        />
-      )
+  handleNewNote = newNote => {
+    this.setState({
+      notes: [...this.state.notes, newNote]
     })
-    return note
   }
 
   render() {
-    const value={
+    const value = {
       folders: this.state.folders,
       notes: this.state.notes,
-      renderNavLinks: this.renderNavLinks(),
-      renderNoteList: this.renderNoteList(),
-      renderNote: this.renderNote()
+      handleNoteDeleteUpdate: this.handleNoteDeleteUpdate.bind(this),
+      handleNewFolder: this.handleNewFolder.bind(this),
+      handleNewNote: this.handleNewNote.bind(this)
     }
     return (
       <AppContext.Provider value={value}>
@@ -122,7 +72,6 @@ export default class App extends Component {
         <Sidebar />
 
         <ContentContainer />
-
       </div>
       </AppContext.Provider>
     )
