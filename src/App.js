@@ -40,7 +40,10 @@ export default class App extends Component {
 
   handleNoteDeleteUpdate = id => {
     this.setState({
-      notes: this.state.notes.filter(note => note.id !== id)
+      notes: this.state.notes.filter((note) => { 
+        return note.id !== id 
+      }
+      )
     })
   }
 

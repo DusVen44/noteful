@@ -5,6 +5,7 @@ import NoteBox from '../noteBox/NoteBox'
 import AppContext from '../AppContext'
 import { Route } from 'react-router-dom'
 import AddNote from '../addNote/AddNote';
+import AddNoteError from '../addNote/AddNoteError';
 
 export default class NoteList extends Component {
     state = {
@@ -71,7 +72,9 @@ export default class NoteList extends Component {
                         {buttonText}
                     </button>
                     <div className="add-note-form-container">
-                        {this.state.showForm && <AddNote toggleForm={this.toggleForm}/>}
+                        <AddNoteError>
+                            {this.state.showForm && <AddNote toggleForm={this.toggleForm}/>}
+                        </AddNoteError>
                     </div>
                         
                 </div>

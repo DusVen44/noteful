@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Route, Link } from 'react-router-dom'
 import './NoteBox.css'
 import AppContext from '../AppContext'
+import PropTypes from 'prop-types'
 
 export default class NoteBox extends Component {
     static contextType = AppContext;
@@ -50,4 +51,10 @@ export default class NoteBox extends Component {
             </div>
         )
     }
+}
+
+NoteBox.propTypes = {
+    id: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    handleDelete: PropTypes.func
 }

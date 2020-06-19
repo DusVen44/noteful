@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './AddFolder.css'
 import AppContext from '../AppContext'
 import ValidationError from '../validationError/ValidationError';
+import PropTypes from 'prop-types'
 
 export default class AddFolder extends Component {
     constructor(props){
@@ -72,3 +73,7 @@ export default class AddFolder extends Component {
     }
 }
 
+AddFolder.propTypes = {
+    handleSubmit: PropTypes.func,
+    updateFolderName: PropTypes.func
+}

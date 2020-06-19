@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import "./Note.css"
 import AppContext from '../AppContext'
+import PropTypes from 'prop-types'
 
 export default class Note extends Component {
     static contextType = AppContext;
@@ -52,4 +53,10 @@ export default class Note extends Component {
                 </div>
             </div>
         )}
+    }
+
+    Note.propTypes = {
+        name: PropTypes.string.isRequired,
+        content: PropTypes.string.isRequired,
+        handleDelete: PropTypes.func
     }

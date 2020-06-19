@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AppContext from './../AppContext'
 import ValidationError from '../validationError/ValidationError';
+import PropTypes from 'prop-types'
 
 export default class AddNote extends Component {    
     constructor(props){
@@ -141,3 +142,9 @@ export default class AddNote extends Component {
     }
 }
 
+AddNote.propTypes = {
+    handleSubmit: PropTypes.func,
+    updateName: PropTypes.func,
+    updateFolder: PropTypes.func,
+    updateContent: PropTypes.func
+}
