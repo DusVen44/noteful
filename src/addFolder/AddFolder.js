@@ -49,7 +49,7 @@ export default class AddFolder extends Component {
             this.props.toggleForm()
         })
         .catch(error => {
-            alert(error)
+            alert("Could not add folder", error)
         })
     }
 

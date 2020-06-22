@@ -96,7 +96,7 @@ export default class AddNote extends Component {
             this.props.toggleForm()
         })
         .catch(error => {
-            alert(error)
+            alert("Could not add note.", error)
         })
     }
 
