@@ -3,7 +3,7 @@ import './Sidebar.css'
 import { Route, NavLink } from 'react-router-dom'
 import AppContext from '../AppContext'
 import AddFolder from './../addFolder/AddFolder';
-import AddFolderError from '../addFolder/AddFolderError';
+import PropTypes from 'prop-types';
 
 export default class Sidebar extends Component {
     state = {
@@ -56,12 +56,14 @@ export default class Sidebar extends Component {
                     {buttonText}
                 </button>
                 <div className="add-folder-form-container">
-                    <AddFolderError>
-                        {this.state.showForm && <AddFolder toggleForm={this.toggleForm}/>}
-                    </AddFolderError>
+                    {this.state.showForm && <AddFolder toggleForm={this.toggleForm}/>}
                 </div>
 
             </div>
         )
     }
     }
+
+Sidebar.propTypes = {
+    toggleForm: PropTypes.func,
+}

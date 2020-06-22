@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class AddNoteError extends Component {
+export default class AddError extends Component {
     constructor(props) {
         super(props)
         this.state = {

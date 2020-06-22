@@ -5,7 +5,7 @@ import NoteBox from '../noteBox/NoteBox'
 import AppContext from '../AppContext'
 import { Route } from 'react-router-dom'
 import AddNote from '../addNote/AddNote';
-import AddNoteError from '../addNote/AddNoteError';
+import PropTypes from 'prop-types'
 
 export default class NoteList extends Component {
     state = {
@@ -72,9 +72,7 @@ export default class NoteList extends Component {
                         {buttonText}
                     </button>
                     <div className="add-note-form-container">
-                        <AddNoteError>
                             {this.state.showForm && <AddNote toggleForm={this.toggleForm}/>}
-                        </AddNoteError>
                     </div>
                         
                 </div>
@@ -82,4 +80,8 @@ export default class NoteList extends Component {
             </div>
         )
     }
+    }
+
+    NoteList.propTypes = {
+        toggleForm: PropTypes.func,
     }
