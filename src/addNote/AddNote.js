@@ -48,6 +48,7 @@ export default class AddNote extends Component {
                 touched: true
         }
     })
+    console.log(folderId)
 }
 
     validateFolder() {
@@ -81,9 +82,9 @@ export default class AddNote extends Component {
                 'content-type': 'application/json'
             },
             body: JSON.stringify({ 
-                name: this.state.name,
-                folderId: this.state.folderId,
-                content: this.state.content
+                name: this.state.name.value,
+                folderId: this.state.folderId.value,
+                content: this.state.content.value
              })
         })  
         .then(res => {
@@ -131,7 +132,7 @@ export default class AddNote extends Component {
                     <label htmlFor="folderOptions">Folder to add Note to: </label>
                     <select 
                         name="folderOptions"
-                        value={this.state.folderId}
+                        value={this.state.folderId.value}
                         onChange={e => this.updateFolder(e.target.value)}
                     >
                         <option value="">Select Folder</option>
