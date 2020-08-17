@@ -10,7 +10,7 @@ export default class Note extends Component {
         const id = this.props.id;
         e.preventDefault();
 
-        fetch(fetch(`http://localhost:9090/notes/${id}`, {
+        fetch(fetch(`http://localhost:8000/api/notes/${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -39,7 +39,7 @@ export default class Note extends Component {
                 <br></br>
 
                 <div className="note-link-box">
-                    <h1>{this.props.name}</h1>
+                    <h1>{this.props.note_name}</h1>
                     <button 
                         className="button-delete"
                         onClick={this.handleDelete}
@@ -56,7 +56,7 @@ export default class Note extends Component {
     }
 
     Note.propTypes = {
-        name: PropTypes.string.isRequired,
+        note_name: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,
         id: PropTypes.string.isRequired,
         handleDelete: PropTypes.func

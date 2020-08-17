@@ -35,12 +35,12 @@ export default class NoteList extends Component {
                         return (
                             <Route
                                 key={note.id}
-                                path={`/${note.folderId}`}
+                                path={`/${note.folder_id}`}
                                 render={ () => {
                                     return <NoteBox 
-                                                name={note.name}
+                                                name={note.note_name}
                                                 id={note.id}
-                                                date={note.modified}
+                                                date={note.date_modified}
                                                 delete={this.context.delete}
                                             />
                                 }}

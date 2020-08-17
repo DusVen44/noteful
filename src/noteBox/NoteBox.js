@@ -11,7 +11,7 @@ export default class NoteBox extends Component {
         const id = this.props.id;
         e.preventDefault();
 
-        fetch(fetch(`http://localhost:9090/notes/${id}`, {
+        fetch(fetch(`http://localhost:8000/api/notes/${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -55,6 +55,6 @@ export default class NoteBox extends Component {
 
 NoteBox.propTypes = {
     id: PropTypes.string,
-    name: PropTypes.string.isRequired,
+    note_name: PropTypes.string.isRequired,
     handleDelete: PropTypes.func
 }

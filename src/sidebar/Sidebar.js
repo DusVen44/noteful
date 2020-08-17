@@ -40,7 +40,7 @@ export default class Sidebar extends Component {
                                             className="nav-link"
                                             activeClassName="active">
                                                 <li className="nav-link-box">
-                                                    {folder.name}
+                                                    {folder.folder_name}
                                                 </li>
                                             </NavLink>
                                 }}
