@@ -49,7 +49,6 @@ export default class AddNote extends Component {
                 touched: true
         }
     })
-    console.log(folderId)
 }
 
     validateFolder() {

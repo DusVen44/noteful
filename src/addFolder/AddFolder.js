@@ -3,7 +3,8 @@ import './AddFolder.css'
 import AppContext from '../AppContext'
 import ValidationError from '../validationError/ValidationError';
 import PropTypes from 'prop-types';
-import AddError from '../addError/AddError'
+import AddError from '../addError/AddError';
+import config from '../config';
 
 export default class AddFolder extends Component {
     constructor(props){
@@ -32,7 +33,7 @@ export default class AddFolder extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        fetch('http://localhost:8000/api/folders', {
+        fetch(`${config.API_ENDPOINT}/api/folders`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
