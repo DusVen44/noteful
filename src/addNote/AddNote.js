@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import AppContext from './../AppContext'
 import ValidationError from '../validationError/ValidationError';
 import PropTypes from 'prop-types';
-import AddError from '../addError/AddError'
+import AddError from '../addError/AddError';
+import config from '../config';
 
 export default class AddNote extends Component {    
     constructor(props){
@@ -76,14 +77,14 @@ export default class AddNote extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        fetch('http://localhost:8000/api/notes', {
+        fetch(`${config.API_ENPOINT}/api/notes`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
             body: JSON.stringify({ 
-                name: this.state.name.value,
-                folderId: this.state.folderId.value,
+                note_name: this.state.name.value,
+                folder_id: this.state.folderId.value,
                 content: this.state.content.value
              })
         })  
@@ -98,6 +99,7 @@ export default class AddNote extends Component {
         })
         .catch(error => {
             alert("Could not add note.", error)
+            console.log(error)
         })
     }
 
@@ -109,7 +111,7 @@ export default class AddNote extends Component {
                     id={folder.id}
                     value={folder.id}
                 >
-                    {folder.name}
+                    {folder.folder_name}
                 </option>
             )
         })

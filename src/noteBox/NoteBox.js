@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
-import './NoteBox.css'
-import AppContext from '../AppContext'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
+import './NoteBox.css';
+import AppContext from '../AppContext';
+import PropTypes from 'prop-types';
+import config from '../config';
 
 export default class NoteBox extends Component {
     static contextType = AppContext;
@@ -11,7 +12,7 @@ export default class NoteBox extends Component {
         const id = this.props.id;
         e.preventDefault();
 
-        fetch(fetch(`http://localhost:8000/api/notes/${id}`, {
+        fetch(fetch(`${config.API_ENDPOINT}/api/notes/${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -20,7 +21,6 @@ export default class NoteBox extends Component {
         .then(res => {
             if (!res.ok)
                 return res.json().then(e => Promise.reject(e))
-            return res.json()
         })
         .then(() => {
             this.context.handleNoteDeleteUpdate(id)
@@ -37,7 +37,7 @@ export default class NoteBox extends Component {
                        render={() => {
                         return (
                             <li className="note-link-box">
-                                <Link to={`/${this.props.id}`}>
+                                <Link to={`/${this.props.folder_id}/${this.props.id}`}>
                                     <h1>{this.props.name}</h1>
                                 </Link>
                                 <button 
@@ -54,7 +54,7 @@ export default class NoteBox extends Component {
 }
 
 NoteBox.propTypes = {
-    id: PropTypes.string,
-    note_name: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    name: PropTypes.string.isRequired,
     handleDelete: PropTypes.func
 }

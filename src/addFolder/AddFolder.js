@@ -9,22 +9,22 @@ export default class AddFolder extends Component {
     constructor(props){
         super(props)
         this.state = {
-            folderName: "",
+            folder_name: "",
             touched: false
         };
     }
     
     static contextType = AppContext;
 
-    updateFolderName(name) {
+    updateFolder_name(name) {
         this.setState({
-            folderName: name,
+            folder_name: name,
             touched: true
         })
     }
 
-    validateFolderName() {
-        const name = this.state.folderName;
+    validateFolder_name() {
+        const name = this.state.folder_name;
         if (name.length === 0) {
             return 'Folder Name is required!';
         }
@@ -37,7 +37,7 @@ export default class AddFolder extends Component {
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ name: this.state.folderName })
+            body: JSON.stringify({ folder_name: this.state.folder_name })
         })  
         .then(res => {
             if (!res.ok)
@@ -50,6 +50,7 @@ export default class AddFolder extends Component {
         })
         .catch(error => {
             alert("Could not add folder", error)
+            console.log(error)
         })
     }
 
@@ -57,19 +58,19 @@ export default class AddFolder extends Component {
         return (
             <AddError>
                 <form className="add-folder-form" onSubmit={this.handleSubmit}>
-                    <label htmlFor="folderName">Folder Name:</label>
+                    <label htmlFor="folder_name">Folder Name:</label>
                     <input 
                         type="text"
-                        name="folderName"
-                        id="folderName"
-                        onChange={e => this.updateFolderName(e.target.value)}
+                        name="folder_name"
+                        id="folder_name"
+                        onChange={e => this.updateFolder_name(e.target.value)}
                         required
                     />
-                    {this.state.touched && <ValidationError message={this.validateFolderName()}/>}
+                    {this.state.touched && <ValidationError message={this.validateFolder_name()}/>}
                     <button 
                         type="submit"
                         className="submit-button"
-                        disabled={!this.state.folderName}
+                        disabled={!this.state.folder_name}
                     >
                         Add New Folder
                     </button>
@@ -81,6 +82,6 @@ export default class AddFolder extends Component {
 
 AddFolder.propTypes = {
     handleSubmit: PropTypes.func,
-    updateFolderName: PropTypes.func,
+    updateFolder_name: PropTypes.func,
     toggleForm: PropTypes.func
 }

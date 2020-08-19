@@ -4,6 +4,7 @@ import Header from './header/Header';
 import Sidebar from './sidebar/Sidebar';
 import ContentContainer from './contentContainer/ContentContainer';
 import AppContext from './AppContext';
+import config from './config';
 
 export default class App extends Component {
   constructor(props) {
@@ -16,8 +17,8 @@ export default class App extends Component {
 
   componentDidMount() {
     Promise.all([
-      fetch('http://localhost:8000/api/folders'),
-      fetch('http://localhost:8000/api/notes')
+      fetch(`${config.API_ENDPOINT}/api/folders`),
+      fetch(`${config.API_ENDPOINT}/api/notes`)
     ])
       .then(([notesRes, foldersRes]) => {
         if (!notesRes.ok)

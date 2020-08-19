@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import "./Note.css"
-import AppContext from '../AppContext'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import "./Note.css";
+import AppContext from '../AppContext';
+import PropTypes from 'prop-types';
+import config from '../config';
 
 export default class Note extends Component {
     static contextType = AppContext;
@@ -10,7 +11,7 @@ export default class Note extends Component {
         const id = this.props.id;
         e.preventDefault();
 
-        fetch(fetch(`http://localhost:8000/api/notes/${id}`, {
+        fetch(fetch(`${config.API_ENDPOINT}/api/notes/${id}`, {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json'
@@ -19,7 +20,6 @@ export default class Note extends Component {
         .then(res => {
             if (!res.ok)
                 return res.json().then(e => Promise.reject(e))
-            return res.json()
         })
         .then(() => {
             this.context.handleNoteDeleteUpdate(id)
@@ -58,6 +58,6 @@ export default class Note extends Component {
     Note.propTypes = {
         note_name: PropTypes.string.isRequired,
         content: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
         handleDelete: PropTypes.func
     }
